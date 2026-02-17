@@ -327,6 +327,7 @@ func (r *Runner) runPreflight(ctx context.Context) error {
 		{"go", "test", "./...", "-count=1"},
 		{"node", "--check", "api/chat-stream.js"},
 		{"node", "--check", "api/helpers/stream-tool-sieve.js"},
+		{"node", "--test", "api/helpers/stream-tool-sieve.test.js", "api/chat-stream.test.js"},
 		{"npm", "run", "build", "--prefix", "webui"},
 	}
 	f, err := os.OpenFile(r.preflightLog, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0o644)
@@ -1056,7 +1057,7 @@ func (r *Runner) caseAnthropicNonstream(ctx context.Context, cc *caseContext) er
 			"content-type":      "application/json",
 		},
 		Body: map[string]any{
-			"model": "claude-sonnet-4-20250514",
+			"model": "claude-sonnet-4-5",
 			"messages": []map[string]any{
 				{"role": "user", "content": "hello"},
 			},
@@ -1084,7 +1085,7 @@ func (r *Runner) caseAnthropicStream(ctx context.Context, cc *caseContext) error
 			"content-type":      "application/json",
 		},
 		Body: map[string]any{
-			"model": "claude-sonnet-4-20250514",
+			"model": "claude-sonnet-4-5",
 			"messages": []map[string]any{
 				{"role": "user", "content": "stream hello"},
 			},
@@ -1113,7 +1114,7 @@ func (r *Runner) caseAnthropicCountTokens(ctx context.Context, cc *caseContext) 
 			"content-type":      "application/json",
 		},
 		Body: map[string]any{
-			"model": "claude-sonnet-4-20250514",
+			"model": "claude-sonnet-4-5",
 			"messages": []map[string]any{
 				{"role": "user", "content": "count me"},
 			},
